@@ -1,32 +1,3 @@
-// const express = require("express");
-// const app = express();
-// const bodyParser = require("body-parser");
-// const cors = require("cors");
-// const mysql = require("mysql2");
-
-
-
-
-// app.use(cors());
-// app.use(express.json());
-// app.use(bodyParser.urlencoded({extended:true}));
-
-
-// app.get("/", (req, res)=>{
-//     const sqlInsert ="INSEAT INTO product_table (ProductId,ProductName,CategoryId,CategoryName,Actions) VALUES  ('12','productsope','15','sope')"
-//     db.query(sqlInsert,(error,result)=>{
-//         console.log("error",error);
-//         console.log("result",result);
-//         res.send("hello expess")
-//     })
-  
-  
-// })
-// app.listen(5000,()=>{
-//     console.log("server is running on 5000")
-// })
-
-
 
 
 const express = require('express');
@@ -75,7 +46,7 @@ app.post('/categories', (req, res) => {
 });
 
 // Product routes
-app.get('/products', (req, res) => {
+app.get('/productmasters', (req, res) => {
   const { page, pageSize } = req.query;
   const offset = (page - 1) * pageSize;
   
@@ -97,7 +68,7 @@ app.get('/products', (req, res) => {
   });
 });
 
-app.post('/products', (req, res) => {
+app.post('/productmasters', (req, res) => {
   // Create a new product in the database
   const { productName, categoryId } = req.body;
   pool.query('INSERT INTO products (name, categoryId) VALUES (?, ?)', [productName, categoryId], (err, results) => {
